@@ -2,6 +2,10 @@
 import torch
 from pyannote.audio import Pipeline
 
+# Check for CUDA availability
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f"Using device: {device}")
+
 from pyannote.audio.models.blocks.pooling import StatsPool
 
 def patched_forward(self, sequences, weights=None):
@@ -15,7 +19,7 @@ def patched_forward(self, sequences, weights=None):
 StatsPool.forward = patched_forward
 
 pipeline = Pipeline.from_pretrained(
-  "pyannote/speaker-diarization-community-1")
+  "pyannote/speaker-diarization-community-1", device=device)
 
 
 from pyannote.audio.pipelines.utils.hook import ProgressHook
