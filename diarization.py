@@ -19,12 +19,13 @@ def patched_forward(self, sequences, weights=None):
 StatsPool.forward = patched_forward
 
 pipeline = Pipeline.from_pretrained(
-  "pyannote/speaker-diarization-community-1", device=device)
+  "pyannote/speaker-diarization-community-1")
 
+pipeline.to(device)
 
 from pyannote.audio.pipelines.utils.hook import ProgressHook
 with ProgressHook() as hook:
-    diarization = pipeline('audios/Чопо бала (1994) реж. Эркин Рыспаев [VFzr53VJunU].m4a')
+    diarization = pipeline('alatoo24.m4a', hook=hook)
     #diarization = pipeline('/home/kenenbek/Downloads/Telegram Desktop/00000_000_neutral_004_1_Timur_neutral.wav')
 
 

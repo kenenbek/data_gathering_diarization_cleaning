@@ -4,7 +4,7 @@ import torchaudio
 from collections import defaultdict
 
 # Paths
-audio_file = "audios/Чопо бала (1994) реж. Эркин Рыспаев [VFzr53VJunU].m4a"
+audio_file = "alatoo24.m4a"
 csv_file = "diarization.csv"
 output_dir = "speaker_segments"
 
