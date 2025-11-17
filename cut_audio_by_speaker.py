@@ -4,7 +4,7 @@ import torchaudio
 from collections import defaultdict
 
 # Paths
-audio_file = "alatoo24.m4a"
+audio_file = "nakta_kyrgyz_degen_kim.m4a"
 csv_file = "diarization.csv"
 output_dir = "speaker_segments"
 
