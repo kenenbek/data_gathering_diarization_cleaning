@@ -31,6 +31,7 @@ def diarize_audio(audio_file, num_speakers=None, device=None):
     # Load pipeline
     print("Loading diarization pipeline...")
     pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-community-1")
+    #pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1")
     pipeline.to(device)
 
     # Perform diarization
