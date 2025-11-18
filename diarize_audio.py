@@ -63,12 +63,13 @@ def save_diarization_results(diarization, output_dir="."):
     # Print and collect results
     print("\nDiarization Results:")
     print("-" * 60)
-    for turn, speaker in diarization.itertracks(yield_label=True):
-        print(f"{speaker} speaks between t={turn.start:.3f}s and t={turn.end:.3f}s")
+    for segment, track, speaker in diarization.speaker_diarization.itertracks(yield_label=True):
+        print(f"{speaker} speaks between t={segment.start:.3f}s and t={segment.end:.3f}s")
+        print(f"TRACK {track}")
         segments.append({
             'speaker': speaker,
-            'start': turn.start,
-            'end': turn.end
+            'start': segment.start,
+            'end': segment.end
         })
     print("-" * 60)
 
@@ -115,7 +116,7 @@ def test_single_file():
     Test function: Diarize a single test audio file.
     """
     # ========== TEST CONFIGURATION ==========
-    AUDIO_FILE = "test_audios/alatoo24.m4a"
+    AUDIO_FILE = "test_audios/alatoo24_1_min.m4a"
     NUM_SPEAKERS = 2  # Set to None for auto-detection
     OUTPUT_DIR = "test_output/alatoo24"
     # ========================================
