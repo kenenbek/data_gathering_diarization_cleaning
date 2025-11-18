@@ -110,6 +110,51 @@ def process_audio_file(audio_file, num_speakers, output_dir):
         return False
 
 
+def test_single_file():
+    """
+    Test function: Diarize a single test audio file.
+    """
+    # ========== TEST CONFIGURATION ==========
+    AUDIO_FILE = "test_audios/alatoo24.m4a"
+    NUM_SPEAKERS = 2  # Set to None for auto-detection
+    OUTPUT_DIR = "test_output/alatoo24"
+    # ========================================
+
+    print("=" * 80)
+    print("SPEAKER DIARIZATION - SINGLE FILE TEST")
+    print("=" * 80)
+    print(f"Audio file: {AUDIO_FILE}")
+    print(f"Number of speakers: {NUM_SPEAKERS}")
+    print(f"Output directory: {OUTPUT_DIR}")
+    print("=" * 80)
+
+    # Check if file exists
+    if not os.path.exists(AUDIO_FILE):
+        print(f"\n✗ Error: Audio file not found: {AUDIO_FILE}")
+        return False
+
+    import time
+    start_time = time.time()
+
+    # Process the audio file
+    print(f"\nProcessing {AUDIO_FILE}...")
+    success = process_audio_file(AUDIO_FILE, NUM_SPEAKERS, OUTPUT_DIR)
+
+    elapsed = time.time() - start_time
+
+    # Summary
+    print("\n" + "=" * 80)
+    if success:
+        print("✓ TEST COMPLETE!")
+        print(f"⏱ Time taken: {elapsed/60:.2f} minutes ({elapsed:.1f} seconds)")
+        print(f"📁 Results saved to: {OUTPUT_DIR}/diarization.csv")
+    else:
+        print("✗ TEST FAILED!")
+    print("=" * 80)
+
+    return success
+
+
 def main():
     """
     Main execution: Perform diarization on all downloaded audio files.
@@ -190,5 +235,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # For testing single file, uncomment this:
+    test_single_file()
+
+    # For batch processing all videos from CSV, uncomment this:
+    # main()
 
