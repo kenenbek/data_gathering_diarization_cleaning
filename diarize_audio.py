@@ -117,7 +117,7 @@ def test_single_file():
     Test function: Diarize a single test audio file.
     """
     # ========== TEST CONFIGURATION ==========
-    AUDIO_FILE = "test_audios/alatoo24_1_min.m4a"
+    AUDIO_FILE = "test_audios/alatoo24.m4a"
     NUM_SPEAKERS = 2  # Set to None for auto-detection
     OUTPUT_DIR = "test_output/alatoo24"
     # ========================================
