@@ -125,18 +125,31 @@ ehthumbs.db
 Thumbs.db
 
 # Project-specific ignores
-# Audio files (large)
-audios/*.m4a
-audios/*.webm
-audios/*.wav
-audios/*.mp3
+# Audio files (large) - all formats
+*.m4a
+*.mp3
+*.wav
+*.webm
+*.aac
+*.flac
+*.ogg
+*.opus
+*.wma
 
-# Generated outputs
+# Downloaded audio directory
+downloads/
+audios/
+
+# Pipeline output directories
+output/
 speaker_segments/
+
+# Diarization outputs
 diarization_output.log
 audio.rttm
 diarization.txt
 diarization.csv
+*.rttm
 
 # Temporary files
 *.tmp
