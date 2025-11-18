@@ -238,8 +238,8 @@ def main():
 
 if __name__ == "__main__":
     # For testing single file, uncomment this:
-    test_single_file()
+    # test_single_file()
 
     # For batch processing all videos from CSV, uncomment this:
-    # main()
+    main()
 
