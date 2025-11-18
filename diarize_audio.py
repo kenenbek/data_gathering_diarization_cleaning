@@ -5,6 +5,8 @@ Performs speaker diarization on audio files and saves results as CSV.
 
 import os
 import csv
+import sys
+import argparse
 import torch
 import pandas as pd
 from pyannote.audio import Pipeline
@@ -157,15 +159,20 @@ def test_single_file():
     return success
 
 
-def main():
+def main(csv_file=None, downloads_dir=None, output_root=None):
     """
     Main execution: Perform diarization on all downloaded audio files.
+
+    Args:
+        csv_file: Path to CSV file with video links (can be overridden via CLI)
+        downloads_dir: Directory containing downloaded audio files
+        output_root: Root directory for output files
     """
-    # ========== CONFIGURATION ==========
-    CSV_FILE = "youtube_nakta_videos_phase_1.csv"
-    DOWNLOADS_DIR = "downloads"
-    OUTPUT_ROOT = "output"
-    # ===================================
+    # ========== CONFIGURATION (defaults) ==========
+    CSV_FILE = csv_file or "youtube_nakta_videos_phase_1.csv"
+    DOWNLOADS_DIR = downloads_dir or "downloads"
+    OUTPUT_ROOT = output_root or "output"
+    # =============================================
 
     print("=" * 80)
     print("SPEAKER DIARIZATION")
@@ -237,9 +244,57 @@ def main():
 
 
 if __name__ == "__main__":
-    # For testing single file, uncomment this:
-    # test_single_file()
+    parser = argparse.ArgumentParser(
+        description="Speaker diarization for audio files from YouTube videos",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Use default CSV file
+  python diarize_audio.py
+  
+  # Specify custom CSV file
+  python diarize_audio.py --csv youtube_nakta_videos_phase_1_part1.csv
+  
+  # Specify all parameters
+  python diarize_audio.py --csv part1.csv --downloads downloads --output output
+  
+  # Run test on single file
+  python diarize_audio.py --test
+        """
+    )
 
-    # For batch processing all videos from CSV, uncomment this:
-    main()
+    parser.add_argument(
+        '--csv',
+        type=str,
+        default=None,
+        help='Path to CSV file containing YouTube links (default: youtube_nakta_videos_phase_1.csv)'
+    )
+
+    parser.add_argument(
+        '--downloads',
+        type=str,
+        default=None,
+        help='Directory containing downloaded audio files (default: downloads)'
+    )
+
+    parser.add_argument(
+        '--output',
+        type=str,
+        default=None,
+        help='Root directory for output files (default: output)'
+    )
+
+    parser.add_argument(
+        '--test',
+        action='store_true',
+        help='Run test on single file (test_audios/alatoo24.m4a) instead of batch processing'
+    )
+
+    args = parser.parse_args()
+
+    # Run test or main
+    if args.test:
+        test_single_file()
+    else:
+        main(csv_file=args.csv, downloads_dir=args.downloads, output_root=args.output)
 
