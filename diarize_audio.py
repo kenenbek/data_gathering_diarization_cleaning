@@ -62,17 +62,17 @@ def save_diarization_results(diarization, output_dir="."):
     segments = []
 
     # Print and collect results
-    print("\nDiarization Results:")
-    print("-" * 60)
+    # print("\nDiarization Results:")
+    # print("-" * 60)
     for segment, track, speaker in diarization.speaker_diarization.itertracks(yield_label=True):
-        print(f"{speaker} speaks between t={segment.start:.3f}s and t={segment.end:.3f}s")
-        print(f"TRACK {track}")
+        # print(f"{speaker} speaks between t={segment.start:.3f}s and t={segment.end:.3f}s")
+        # print(f"TRACK {track}")
         segments.append({
             'speaker': speaker,
             'start': segment.start,
             'end': segment.end
         })
-    print("-" * 60)
+    # print("-" * 60)
 
     # Save as CSV
     csv_file = os.path.join(output_dir, "diarization.csv")
