@@ -8,6 +8,7 @@ This script processes audio segments, filtering out short ones and splitting lon
   to find suitable split points in silences.
 """
 import os
+import gc
 import torch
 import torchaudio
 import argparse
@@ -136,40 +137,45 @@ def find_split_points(speech_timestamps, total_duration_samples, num_splits, sam
 
 def split_segment(waveform, sample_rate, num_splits, vad_model):
     """Split a single audio waveform into multiple chunks."""
-    total_duration_samples = waveform.shape[1]
-    
-    # Resample to 16kHz for VAD model if necessary
-    if sample_rate != 16000:
-        resampler = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=16000)
-        vad_waveform = resampler(waveform)
-    else:
-        vad_waveform = waveform
+    with torch.no_grad():  # Prevent gradient tracking to save memory
+        total_duration_samples = waveform.shape[1]
 
-    # Get speech timestamps from the VAD model
-    speech_timestamps = get_speech_timestamps(
-        vad_waveform[0],
-        vad_model,
-        sampling_rate=16000,
-        min_silence_duration_ms=250, # Look for longer silences
-    )
-    
-    # Convert timestamps back to original sample rate if resampling occurred
-    if sample_rate != 16000:
-        for ts in speech_timestamps:
-            ts['start'] = int(ts['start'] * sample_rate / 16000)
-            ts['end'] = int(ts['end'] * sample_rate / 16000)
+        # Resample to 16kHz for VAD model if necessary
+        if sample_rate != 16000:
+            resampler = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=16000)
+            vad_waveform = resampler(waveform)
+        else:
+            vad_waveform = waveform
 
-    # Find the best points to split the audio
-    split_points_samples = find_split_points(speech_timestamps, total_duration_samples, num_splits, sample_rate)
+        # Get speech timestamps from the VAD model
+        speech_timestamps = get_speech_timestamps(
+            vad_waveform[0],
+            vad_model,
+            sampling_rate=16000,
+            min_silence_duration_ms=250, # Look for longer silences
+        )
 
-    chunks = []
-    last_split = 0
-    for split_point in split_points_samples:
-        chunks.append(waveform[:, last_split:split_point])
-        last_split = split_point
-    chunks.append(waveform[:, last_split:])
-    
-    return chunks
+        # Free resampled waveform if it was created
+        if sample_rate != 16000:
+            del vad_waveform
+
+        # Convert timestamps back to original sample rate if resampling occurred
+        if sample_rate != 16000:
+            for ts in speech_timestamps:
+                ts['start'] = int(ts['start'] * sample_rate / 16000)
+                ts['end'] = int(ts['end'] * sample_rate / 16000)
+
+        # Find the best points to split the audio
+        split_points_samples = find_split_points(speech_timestamps, total_duration_samples, num_splits, sample_rate)
+
+        chunks = []
+        last_split = 0
+        for split_point in split_points_samples:
+            chunks.append(waveform[:, last_split:split_point])
+            last_split = split_point
+        chunks.append(waveform[:, last_split:])
+
+        return chunks
 
 
 def process_video(video_id, output_root="output", min_duration=5, split_threshold=16, vad_model=None):
@@ -205,40 +211,52 @@ def process_video(video_id, output_root="output", min_duration=5, split_threshol
         segment_counter = 1
         for segment_file in segment_files:
             try:
-                waveform, sample_rate = torchaudio.load(segment_file)
-                duration = waveform.shape[1] / sample_rate
+                with torch.no_grad():  # Prevent gradient tracking
+                    waveform, sample_rate = torchaudio.load(segment_file)
+                    duration = waveform.shape[1] / sample_rate
 
-                if duration < min_duration:
-                    continue
+                    if duration < min_duration:
+                        del waveform
+                        continue
 
-                if duration <= split_threshold:
-                    # Copy the file as is
-                    output_filename = f"segment_{segment_counter:04d}.wav"
-                    output_filepath = os.path.join(output_speaker_dir, output_filename)
-                    torchaudio.save(output_filepath, waveform, sample_rate)
-                    segment_counter += 1
-                    total_filtered += 1
-                else:
-                    # Determine number of splits (e.g., 16s->2, 24s->3)
-                    num_splits = int(duration // 8)
-                    if num_splits < 2:
-                        num_splits = 2
-
-                    # Split the segment
-                    chunks = split_segment(waveform, sample_rate, num_splits, vad_model)
-                    
-                    for chunk in chunks:
-                        # Skip saving very short chunks resulting from a split
-                        if chunk.shape[1] / sample_rate < 1.0:
-                            continue
+                    if duration <= split_threshold:
+                        # Copy the file as is
                         output_filename = f"segment_{segment_counter:04d}.wav"
                         output_filepath = os.path.join(output_speaker_dir, output_filename)
-                        torchaudio.save(output_filepath, chunk, sample_rate)
+                        torchaudio.save(output_filepath, waveform, sample_rate)
                         segment_counter += 1
                         total_filtered += 1
-            
+                    else:
+                        # Determine number of splits (e.g., 16s->2, 24s->3)
+                        num_splits = int(duration // 8)
+                        if num_splits < 2:
+                            num_splits = 2
+
+                        # Split the segment
+                        chunks = split_segment(waveform, sample_rate, num_splits, vad_model)
+
+                        for chunk in chunks:
+                            # Skip saving very short chunks resulting from a split
+                            if chunk.shape[1] / sample_rate < 1.0:
+                                continue
+                            output_filename = f"segment_{segment_counter:04d}.wav"
+                            output_filepath = os.path.join(output_speaker_dir, output_filename)
+                            torchaudio.save(output_filepath, chunk, sample_rate)
+                            segment_counter += 1
+                            total_filtered += 1
+
+                        # Free memory from chunks
+                        del chunks
+
+                    # Free memory from waveform
+                    del waveform
+
             except Exception as e:
                 print(f"  ✗ Error processing {segment_file}: {e}")
+
+    # Clear GPU cache if available
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
     print(f"  ✓ Finished {video_id}: Kept/created {total_filtered} segments from {total_original} original.")
     return total_original, total_filtered
@@ -265,7 +283,8 @@ Example:
 
     # Load Silero VAD model
     try:
-        model, _ = torch.hub.load(repo_or_dir='snakers4/silero-vad', model='silero_vad', force_reload=True, onnx=False)
+        model, _ = torch.hub.load(repo_or_dir='snakers4/silero-vad', model='silero_vad', force_reload=False, onnx=False)
+        model.eval()  # Set to evaluation mode
         print("Silero VAD model loaded successfully.")
     except Exception as e:
         print(f"✗ Error loading Silero VAD model: {e}")
@@ -294,6 +313,9 @@ Example:
         )
         all_original += original
         all_filtered += filtered
+
+        # Force garbage collection after each video to free memory
+        gc.collect()
 
     print("\n" + "=" * 80)
     print("PROCESSING COMPLETE")
