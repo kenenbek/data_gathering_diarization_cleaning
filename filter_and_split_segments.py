@@ -111,8 +111,8 @@ def find_split_points(speech_timestamps, total_duration_samples, num_splits, sam
         silences.append({'start': last_end, 'end': total_duration_samples, 'duration': total_duration_samples - last_end})
 
     # Score silences based on their proximity to the ideal split points
-    ideal_split_points = [total_duration_samples / num_splits * i for i in range(1, num_splits)]
-    
+    ideal_split_points = [int(total_duration_samples / num_splits * i) for i in range(1, num_splits)]
+
     for silence in silences:
         mid_point = (silence['start'] + silence['end']) / 2
         # Higher score for longer silences closer to an ideal split point
@@ -127,9 +127,9 @@ def find_split_points(speech_timestamps, total_duration_samples, num_splits, sam
 
     split_points = sorted([(s['start'] + s['end']) // 2 for s in best_silences])
     
-    # Ensure we have enough split points
+    # Ensure we have enough split points (all as integers)
     while len(split_points) < num_splits - 1:
-        split_points.append(ideal_split_points[len(split_points)])
+        split_points.append(int(ideal_split_points[len(split_points)]))
 
     return sorted(list(set(split_points)))
 
