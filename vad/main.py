@@ -1,11 +1,26 @@
 import os
 import torch
 import torchaudio
-from silero_vad import load_silero_vad, read_audio, get_speech_timestamps
+from silero_vad import load_silero_vad, get_speech_timestamps
 
 model = load_silero_vad()
 filepath = "/home/k_arzymatov/PycharmProjects/youtube_audio_collection/downloads_wav/1VxsIjMNUBo.wav"
-wav = read_audio(filepath)
+
+# Load audio using modern torchaudio.load
+audio, sr = torchaudio.load(filepath)
+
+# Convert to mono if stereo
+if audio.shape[0] > 1:
+    audio = torch.mean(audio, dim=0, keepdim=True)
+
+# Resample to 16kHz if necessary
+if sr != 16000:
+    resampler = torchaudio.transforms.Resample(sr, 16000)
+    audio = resampler(audio)
+    sr = 16000
+
+# Squeeze to 1D tensor for VAD model
+wav = audio.squeeze()
 
 speech_timestamps = get_speech_timestamps(
     wav,
@@ -28,12 +43,9 @@ print(f"Found {len(speech_timestamps)} speech segments")
 output_folder = "cuttings"
 os.makedirs(output_folder, exist_ok=True)
 
-# Load the full audio file
-audio, sr = torchaudio.load(filepath)
-
-# Convert to mono if stereo
-if audio.shape[0] > 1:
-    audio = torch.mean(audio, dim=0, keepdim=True)
+# Reshape audio back to 2D for saving (already loaded and processed above)
+if audio.dim() == 1:
+    audio = audio.unsqueeze(0)
 
 # Cut and save each segment
 for i, segment in enumerate(speech_timestamps):
