@@ -67,5 +67,5 @@ def vosk_asr(AUDIO_FILE_PATH):
     return " ".join(text_results)
 
 if __name__ == '__main__':
-    path = r"~/PycharmProjects/youtube_audio_collection/output/1VxsIjMNUBo/filtered_segments/SPEAKER_00/segment_0002.wav"
+    path = r"/home/k_arzymatov/PycharmProjects/youtube_audio_collection/output/1VxsIjMNUBo/filtered_segments/SPEAKER_00/segment_0002.wav"
     vosk_asr(path)
