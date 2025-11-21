@@ -99,6 +99,11 @@ def vosk_asr(AUDIO_FILE_PATH):
     # Join all parts into one string
     return " ".join(text_results)
 
+from omnilingual_asr.models.inference.pipeline import ASRInferencePipeline
+def omni_asr(AUDIO_FILE_PATH):
+    pipeline = ASRInferencePipeline(model_card="omniASR_LLM_7B")
+    transcriptions = pipeline.transcribe(AUDIO_FILE_PATH, lang="kir_Cyrl", batch_size=1)
+    return transcriptions
 
 def transcribe_video_segments(video_id, output_root="output", asr_function=None):
     """
