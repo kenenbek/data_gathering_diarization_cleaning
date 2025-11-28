@@ -53,6 +53,35 @@ def download_youtube_audio(youtube_url, output_dir="downloads"):
         return None
 
 
+def convert_m4a_to_wav(m4a_path, wav_path=None, channels=1, overwrite=True):
+    """Convert a downloaded .m4a file to .wav via ffmpeg."""
+    if not os.path.exists(m4a_path):
+        print(f"✗ Source not found: {m4a_path}")
+        return None
+
+    if wav_path is None:
+        base = os.path.splitext(os.path.basename(m4a_path))[0]
+        wav_path = os.path.join(os.path.dirname(m4a_path), f"{base}.wav")
+
+    cmd = [
+        "ffmpeg",
+        "-y" if overwrite else "-n",
+        "-i",
+        m4a_path,
+        "-ac",
+        str(channels),
+        wav_path,
+    ]
+
+    try:
+        subprocess.run(cmd, check=True, capture_output=True, text=True)
+        print(f"✓ Converted to WAV: {wav_path}")
+        return wav_path
+    except subprocess.CalledProcessError as e:
+        print(f"✗ ffmpeg error: {e.stderr or e}")
+        return None
+
+
 def main():
     """
     Main execution: Download audio from all videos in CSV file.
@@ -97,7 +126,11 @@ def main():
         audio_path = download_youtube_audio(youtube_url, output_dir=DOWNLOADS_DIR)
 
         if audio_path:
-            successful += 1
+            wav_path = convert_m4a_to_wav(audio_path)
+            if wav_path:
+                successful += 1
+            else:
+                failed += 1
         else:
             failed += 1
 
@@ -114,4 +147,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
