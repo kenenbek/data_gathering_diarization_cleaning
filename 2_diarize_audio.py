@@ -8,6 +8,7 @@ import csv
 import sys
 import argparse
 import torch
+import torchaudio
 import pandas as pd
 from pyannote.audio import Pipeline
 from pyannote.audio.pipelines.utils.hook import ProgressHook
@@ -33,16 +34,27 @@ def diarize_audio(audio_file, num_speakers=None, device=None):
     # Load pipeline
     print("Loading diarization pipeline...")
     pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-community-1")
-    #pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1")
     pipeline.to(device)
 
-    # Perform diarization
+    # --- PRELOADING AUDIO ---
+    print(f"Preloading audio from {audio_file}...")
+    # torchaudio.load returns: waveform (channel, time), sample_rate (int)
+    waveform, sample_rate = torchaudio.load(audio_file)
+
+    # Construct the dictionary expected by pyannote
+    # Note: Keep waveform on CPU; the pipeline moves specific chunks to GPU internally.
+    audio_in_memory = {
+        "waveform": waveform,
+        "sample_rate": sample_rate
+    }
+
     print(f"Performing diarization on {audio_file}...")
+
     with ProgressHook() as hook:
         if num_speakers:
-            diarization = pipeline(audio_file, hook=hook, num_speakers=num_speakers)
+            diarization = pipeline(audio_in_memory, hook=hook, num_speakers=num_speakers)
         else:
-            diarization = pipeline(audio_file, hook=hook)
+            diarization = pipeline(audio_in_memory, hook=hook)
 
     print("Diarization complete!")
     return diarization
@@ -204,6 +216,7 @@ def main(csv_file=None, downloads_dir=None, output_root=None):
     total_videos = len(df)
     successful = 0
     failed = 0
+    skipped = 0
 
     # Process each video
     for idx, row in df.iterrows():
@@ -212,17 +225,24 @@ def main(csv_file=None, downloads_dir=None, output_root=None):
         num_speakers = int(row['num_speakers']) if pd.notna(row['num_speakers']) else None
         video_name = row.get('name', f"Video_{idx+1}")
 
+        # Create output directory path
+        output_dir = os.path.join(OUTPUT_ROOT, video_id)
+        diarization_csv = os.path.join(output_dir, "diarization.csv")
+
+        # Check if diarization results already exist
+        if os.path.exists(diarization_csv):
+            print(f"\n[{idx+1}/{total_videos}] ⊙ Skipping {video_name} - diarization results already exist")
+            skipped += 1
+            continue
+
         # Check if audio file exists
-        audio_file = os.path.join(DOWNLOADS_DIR, f"{video_id}.m4a")
+        audio_file = os.path.join(DOWNLOADS_DIR, f"{video_id}.wav")
         if not os.path.exists(audio_file):
             print(f"\n[{idx+1}/{total_videos}] ✗ Audio file not found: {audio_file}")
             failed += 1
             continue
 
         print(f"\n[{idx+1}/{total_videos}] Processing: {video_name} and num_speakers={num_speakers}")
-
-        # Create output directory
-        output_dir = os.path.join(OUTPUT_ROOT, video_id, "diarization_results")
 
         # Process the audio file
         success = process_audio_file(audio_file, num_speakers, output_dir)
@@ -238,6 +258,7 @@ def main(csv_file=None, downloads_dir=None, output_root=None):
     print("=" * 80)
     print(f"Total videos: {total_videos}")
     print(f"✓ Successful: {successful}")
+    print(f"⊙ Skipped (already processed): {skipped}")
     print(f"✗ Failed: {failed}")
     print(f"All outputs saved to: {OUTPUT_ROOT}/")
     print("=" * 80)
@@ -297,4 +318,3 @@ Examples:
         test_single_file()
     else:
         main(csv_file=args.csv, downloads_dir=args.downloads, output_root=args.output)
-
