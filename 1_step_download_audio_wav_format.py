@@ -6,6 +6,7 @@ Downloads audio from YouTube videos listed in a CSV file.
 import os
 import pandas as pd
 import subprocess
+import argparse
 
 
 def download_youtube_audio(youtube_url, output_dir="downloads"):
@@ -82,13 +83,100 @@ def convert_m4a_to_wav(m4a_path, wav_path=None, channels=1, overwrite=True):
         return None
 
 
-def main():
+def time_to_seconds(time_str):
+    """
+    Convert M:SS or MM:SS time format to seconds.
+
+    Args:
+        time_str: Time string in M:SS or MM:SS format (e.g., "1:30" or "10:45")
+
+    Returns:
+        Total seconds as float, or 0 if invalid/empty
+    """
+    if pd.isna(time_str) or not time_str:
+        return 0
+
+    try:
+        time_str = str(time_str).strip()
+        parts = time_str.split(':')
+
+        if len(parts) == 2:
+            minutes = int(parts[0])
+            seconds = int(parts[1])
+            return minutes * 60 + seconds
+        else:
+            print(f"⚠ Invalid time format: {time_str}, expected M:SS")
+            return 0
+    except Exception as e:
+        print(f"⚠ Error parsing time '{time_str}': {e}")
+        return 0
+
+
+def cut_wav_beginning(wav_path, cut_seconds, output_path=None):
+    """
+    Cut the beginning of a WAV file using ffmpeg.
+
+    Args:
+        wav_path: Path to the input WAV file
+        cut_seconds: Number of seconds to cut from the beginning
+        output_path: Path for output file (if None, overwrites original)
+
+    Returns:
+        Path to the cut file, or None if failed
+    """
+    if cut_seconds <= 0:
+        return wav_path
+
+    if not os.path.exists(wav_path):
+        print(f"✗ WAV file not found: {wav_path}")
+        return None
+
+    # Use temporary file if overwriting
+    if output_path is None:
+        output_path = wav_path + ".tmp"
+        will_overwrite = True
+    else:
+        will_overwrite = False
+
+    cmd = [
+        "ffmpeg",
+        "-y",
+        "-i", wav_path,
+        "-ss", str(cut_seconds),
+        "-acodec", "copy",
+        output_path
+    ]
+
+    try:
+        subprocess.run(cmd, check=True, capture_output=True, text=True)
+
+        # If overwriting, replace original
+        if will_overwrite:
+            os.replace(output_path, wav_path)
+            output_path = wav_path
+
+        print(f"✓ Cut {cut_seconds}s from beginning: {output_path}")
+        return output_path
+    except subprocess.CalledProcessError as e:
+        print(f"✗ ffmpeg cut error: {e.stderr or e}")
+        # Clean up temp file if it exists
+        if will_overwrite and os.path.exists(output_path):
+            os.remove(output_path)
+        return None
+
+
+def main(csv_file=None, downloads_dir=None, apply_cut_beginning=False):
     """
     Main execution: Download audio from all videos in CSV file.
+
+    Args:
+        csv_file: Path to CSV file (optional, uses default if None)
+        downloads_dir: Directory to save downloads (optional, uses default if None)
+        apply_cut_beginning: If True, cut beginning of WAV based on cut_beginning column
     """
     # ========== CONFIGURATION ==========
-    CSV_FILE = "youtube_nakta_videos_phase_1.csv"
-    DOWNLOADS_DIR = "downloads"
+    CSV_FILE = csv_file or "youtube_nakta_videos_phase_1.csv"
+    DOWNLOADS_DIR = downloads_dir or "downloads"
     # ===================================
 
     print("=" * 80)
@@ -96,6 +184,7 @@ def main():
     print("=" * 80)
     print(f"CSV file: {CSV_FILE}")
     print(f"Downloads directory: {DOWNLOADS_DIR}")
+    print(f"Apply cut_beginning: {apply_cut_beginning}")
     print("=" * 80)
 
     # Read CSV file
@@ -110,6 +199,14 @@ def main():
     if 'youtube_link' not in df.columns:
         print("✗ Error: 'youtube_link' column not found in CSV")
         return
+
+    # Check if cut_beginning column exists
+    has_cut_beginning = 'cut_beginning' in df.columns
+    if apply_cut_beginning and not has_cut_beginning:
+        print("⚠ Warning: --cut-beginning flag set but 'cut_beginning' column not found in CSV")
+        apply_cut_beginning = False
+    elif apply_cut_beginning:
+        print("✓ Will apply cut_beginning values from CSV")
 
     # Process statistics
     total_videos = len(df)
@@ -128,6 +225,17 @@ def main():
         if audio_path:
             wav_path = convert_m4a_to_wav(audio_path)
             if wav_path:
+                # Apply cut_beginning if enabled
+                if apply_cut_beginning and has_cut_beginning:
+                    cut_time = row.get('cut_beginning', None)
+                    if pd.notna(cut_time) and cut_time:
+                        cut_seconds = time_to_seconds(cut_time)
+                        if cut_seconds > 0:
+                            print(f"  Cutting {cut_time} ({cut_seconds}s) from beginning...")
+                            result = cut_wav_beginning(wav_path, cut_seconds)
+                            if not result:
+                                print(f"  ⚠ Warning: Failed to cut audio, keeping original")
+
                 successful += 1
             else:
                 failed += 1
@@ -146,4 +254,45 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+        description="Download audio from YouTube videos and convert to WAV format",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Basic usage with default CSV file
+  python 1_step_download_audio_wav_format.py
+  
+  # Specify custom CSV file
+  python 1_step_download_audio_wav_format.py --csv in/youtube_nakta_videos_phase_1_part1.csv
+  
+  # Enable cutting beginning based on cut_beginning column (M:SS format)
+  python 1_step_download_audio_wav_format.py --cut-beginning
+  
+  # Specify all parameters
+  python 1_step_download_audio_wav_format.py --csv custom.csv --downloads downloads --cut-beginning
+        """
+    )
+
+    parser.add_argument(
+        '--csv',
+        type=str,
+        default=None,
+        help='Path to CSV file containing YouTube links (default: youtube_nakta_videos_phase_1.csv)'
+    )
+
+    parser.add_argument(
+        '--downloads',
+        type=str,
+        default=None,
+        help='Directory to save downloaded audio files (default: downloads)'
+    )
+
+    parser.add_argument(
+        '--cut-beginning',
+        action='store_true',
+        help='Cut beginning of WAV files based on cut_beginning column (M:SS format) in CSV'
+    )
+
+    args = parser.parse_args()
+
+    main(csv_file=args.csv, downloads_dir=args.downloads, apply_cut_beginning=args.cut_beginning)
