@@ -51,6 +51,10 @@ def download_youtube_audio(youtube_url, output_dir="downloads"):
             return None
     except subprocess.CalledProcessError as e:
         print(f"✗ Download error: {e}")
+        if e.stderr:
+            print(f"Error details:\n{e.stderr}")
+        if e.stdout:
+            print(f"Output:\n{e.stdout}")
         return None
 
 
