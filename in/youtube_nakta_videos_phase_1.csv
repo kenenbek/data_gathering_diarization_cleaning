@@ -1,20 +1,85 @@
-youtube_link,youtube_link2,name,num_speakers,lang
-https://www.youtube.com/watch?v=HH5YkDX2h_Y,https://www.youtube.com/watch?v=HH5YkDX2h_Y,Шайтан мени уят кылды… | Бекбар Жээренчиев | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=BLu6arP8OCI,https://www.youtube.com/watch?v=BLu6arP8OCI,Кыргызстандагы эң бай режиссёр… | Бакыт Осмонканов | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=qelLYZ84LVU,https://www.youtube.com/watch?v=qelLYZ84LVU,Эки жүздүүлүк өлүмгө алып барат… | Максат Таласбаев | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=c9qeWZJU-R0,https://www.youtube.com/watch?v=c9qeWZJU-R0,Саясаттан кетүүгө эмне себеп болду? | Өмүрбек Текебаев | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=d2XEKDE-tKU,https://www.youtube.com/watch?v=d2XEKDE-tKU,Эң бай депутат бул… | Марлен Маматалиев | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=mCXKfxP5ztw,https://www.youtube.com/watch?v=mCXKfxP5ztw,"Окубасам малчы болмокмун, бирок… | Калыбек Турдубаев | Накта Подкаст",2,KY
-https://www.youtube.com/watch?v=HZqGvfKn5mU,https://www.youtube.com/watch?v=HZqGvfKn5mU,"Меккеден 3,200,000 реалга жер алдык | Билим Майнаев | Накта Подкаст",2,KY
-https://www.youtube.com/watch?v=ZRN2GjeONfE,https://www.youtube.com/watch?v=ZRN2GjeONfE,Ырчы болуш үчүн ичип-чегиш керекпи? | Омар Жанышов | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=1VxsIjMNUBo,https://www.youtube.com/watch?v=1VxsIjMNUBo,Баарына жеткенден кийин жашоо бүтүп калгандай… | Бактияр Токторов | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=tJabb7lvRX4,https://www.youtube.com/watch?v=tJabb7lvRX4,Эмнеге балдар кыргыз тилин билбейт? | Мелис Мураталиев | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=R33NxJhKvk8,https://www.youtube.com/watch?v=R33NxJhKvk8,Tashiev's close friend revealed everything... | Aibek Alybaev | Nakta Podcast,2,KY
-https://www.youtube.com/watch?v=2cTytn8JvZA,https://www.youtube.com/watch?v=2cTytn8JvZA,"Доктурлар алдап, жазып бере берет экен… | Доктор Турабеков | Накта Подкаст",2,KY
-https://www.youtube.com/watch?v=uze8bFx9il0,https://www.youtube.com/watch?v=uze8bFx9il0,Эл укпаган чындык ачыкталды… | Мырзабек Орумбаев | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=J6GOYMHhjkw,https://www.youtube.com/watch?v=J6GOYMHhjkw,"Кыздарым менен көчөдө калдым, бирок… | Анжелика Кайратова | Накта Подкаст",2,KY
-https://www.youtube.com/watch?v=NBzwmbV3sNU,https://www.youtube.com/watch?v=NBzwmbV3sNU,Биринчи ырымды сүйүп калган медайымга арнагам | Сыймык Бейшекеев | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=xjTrJP3gd5Q,https://www.youtube.com/watch?v=xjTrJP3gd5Q,"Банкрот болуп, көчөдө калганда - Кудайды таптым | Сүймөнкул Жолдубаев | Накта Подкаст",2,KY
-https://www.youtube.com/watch?v=F6t2cJgZJ5o,https://www.youtube.com/watch?v=F6t2cJgZJ5o,Ар бир рилске 1200$ төлөп берет | Азирет Осмонов | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=IuG-fBdJmKs,https://www.youtube.com/watch?v=IuG-fBdJmKs,Сиз төлөгөн салыктар дал ушул багытка жумшалат | Алмамбет Шыкмаматов | Накта Подкаст,2,KY
-https://www.youtube.com/watch?v=1XfTacYVEBo,https://www.youtube.com/watch?v=1XfTacYVEBo,Кийинки беттеш Илия Топурия менен болобу?  | ラジャブアリシェイドゥラフ | RIZIN | Накта Подкаст,2,KY
+youtube_link,,num_speakers,lang,gender,guest,cut_beginning,name
+https://www.youtube.com/watch?v=HH5YkDX2h_Y,https://www.youtube.com/watch?v=HH5YkDX2h_Y,2,ky,M,Бекбар Жээренчиев,1:05,Шайтан мени уят кылды… | Бекбар Жээренчиев | Накта Подкаст
+https://www.youtube.com/watch?v=eo-BP-Ar2MA,https://www.youtube.com/watch?v=eo-BP-Ar2MA,5,ky,M,,1:42,Биз араб болуп баратабызбы? | Накта Подкаст
+https://www.youtube.com/watch?v=BLu6arP8OCI,https://www.youtube.com/watch?v=BLu6arP8OCI,2,ky,M,Бакыт Осмонканов,1:26,Кыргызстандагы эң бай режиссёр… | Бакыт Осмонканов | Накта Подкаст
+https://www.youtube.com/watch?v=qelLYZ84LVU,https://www.youtube.com/watch?v=qelLYZ84LVU,2,ky,M,Максат Таласбаев,1:50,Эки жүздүүлүк өлүмгө алып барат… | Максат Таласбаев | Накта Подкаст
+https://www.youtube.com/watch?v=O5DRoMFY-7g,https://www.youtube.com/watch?v=O5DRoMFY-7g,5,ky,M,"Максат Хамзаев, Адилет Кемелов, Эмир Рысбеков, Умар Кыргыз",2:06,Ийгиликтин баасы канча? | Накта Подкаст
+https://www.youtube.com/watch?v=c9qeWZJU-R0,https://www.youtube.com/watch?v=c9qeWZJU-R0,2,ky,M,Өмүрбек Текебаев,1:56,Саясаттан кетүүгө эмне себеп болду? | Өмүрбек Текебаев | Накта Подкаст
+https://www.youtube.com/watch?v=d2XEKDE-tKU,https://www.youtube.com/watch?v=d2XEKDE-tKU,2,ky,M,Марлен Маматалиев,1:27,Эң бай депутат бул… | Марлен Маматалиев | Накта Подкаст
+https://www.youtube.com/watch?v=mCXKfxP5ztw,https://www.youtube.com/watch?v=mCXKfxP5ztw,2,ky,M,Калыбек Турдубаев,1:38,"Окубасам малчы болмокмун, бирок… | Калыбек Турдубаев | Накта Подкаст"
+https://www.youtube.com/watch?v=2O-9dt-nWpc,https://www.youtube.com/watch?v=2O-9dt-nWpc,5,ru,F,,1:45,Из маленькой страны в большие корпорации | Накта Подкаст
+https://www.youtube.com/watch?v=HZqGvfKn5mU,https://www.youtube.com/watch?v=HZqGvfKn5mU,2,ky,M,Билим Майнаев,1:38,"Меккеден 3,200,000 реалга жер алдык | Билим Майнаев | Накта Подкаст"
+https://www.youtube.com/watch?v=ZRN2GjeONfE,https://www.youtube.com/watch?v=ZRN2GjeONfE,2,ky,M,Омар Жанышов,1:51,Ырчы болуш үчүн ичип-чегиш керекпи? | Омар Жанышов | Накта Подкаст
+https://www.youtube.com/watch?v=th3yVDiKAFI,https://www.youtube.com/watch?v=th3yVDiKAFI,2,ky,M,Мирлан Акжигитов,1:25,"Англияда иштеп, 400 миң долларга компания негиздедим | Мирлан Акжигитов | Накта Подкаст"
+https://www.youtube.com/watch?v=1VxsIjMNUBo,https://www.youtube.com/watch?v=1VxsIjMNUBo,2,ky,M,Бактияр Токторов,1:25,Баарына жеткенден кийин жашоо бүтүп калгандай… | Бактияр Токторов | Накта Подкаст
+https://www.youtube.com/watch?v=tJabb7lvRX4,https://www.youtube.com/watch?v=tJabb7lvRX4,2,ky,M,Мелис Мураталиев,1:13,Эмнеге балдар кыргыз тилин билбейт? | Мелис Мураталиев | Накта Подкаст
+https://www.youtube.com/watch?v=_DhKmqulZIU,https://www.youtube.com/watch?v=_DhKmqulZIU,2,ru,M,HAIRIDIN,1:37,Как зарабатывать на Американском YouTube? | HAIRIDIN | Накта Подкаст
+https://www.youtube.com/watch?v=R33NxJhKvk8,https://www.youtube.com/watch?v=R33NxJhKvk8,2,ky,M,Айбек Алыбаев,1:50,Tashiev's close friend revealed everything... | Aibek Alybaev | Nakta Podcast
+https://www.youtube.com/watch?v=2cTytn8JvZA,https://www.youtube.com/watch?v=2cTytn8JvZA,2,ky,M,Доктор Турабеков,1:42,"Доктурлар алдап, жазып бере берет экен… | Доктор Турабеков | Накта Подкаст"
+https://www.youtube.com/watch?v=uze8bFx9il0,https://www.youtube.com/watch?v=uze8bFx9il0,2,ky,M,Мырзабек Орумбаев,1:26,Эл укпаган чындык ачыкталды… | Мырзабек Орумбаев | Накта Подкаст
+https://www.youtube.com/watch?v=J6GOYMHhjkw,https://www.youtube.com/watch?v=J6GOYMHhjkw,2,ky,F,Анжелика Кайратова,1:50,"Кыздарым менен көчөдө калдым, бирок… | Анжелика Кайратова | Накта Подкаст"
+https://www.youtube.com/watch?v=9NUVldapBJc,https://www.youtube.com/watch?v=9NUVldapBJc,2,ru,M,Тимур Файзиев,1:39,"Был самым бедным в школе, а теперь… | Тимур Файзиев | Накта Подкаст"
+https://www.youtube.com/watch?v=NBzwmbV3sNU,https://www.youtube.com/watch?v=NBzwmbV3sNU,2,ky,M,Сыймык Бейшекеев,1:47,Биринчи ырымды сүйүп калган медайымга арнагам | Сыймык Бейшекеев | Накта Подкаст
+https://www.youtube.com/watch?v=xjTrJP3gd5Q,https://www.youtube.com/watch?v=xjTrJP3gd5Q,2,ky,M,Сүймөнкул Жолдубаев,1:39,"Банкрот болуп, көчөдө калганда - Кудайды таптым | Сүймөнкул Жолдубаев | Накта Подкаст"
+https://www.youtube.com/watch?v=F6t2cJgZJ5o,https://www.youtube.com/watch?v=F6t2cJgZJ5o,2,ky,M,Азирет Осмонов,1:27,Ар бир рилске 1200$ төлөп берет | Азирет Осмонов | Накта Подкаст
+https://www.youtube.com/watch?v=QgCRLmMS5C8,https://www.youtube.com/watch?v=QgCRLmMS5C8,2,ru,M,Саидмурод Давлатов,1:24,How to Become a MILLIONAIRE Through DEBT? | Saidmurod Davlatov | Nakta Podcast
+https://www.youtube.com/watch?v=1XfTacYVEBo,https://www.youtube.com/watch?v=1XfTacYVEBo,2,ky,M,RIZIN,1:21,Кийинки беттеш Илия Топурия менен болобу?  | ラジャブアリシェイドゥラフ | RIZIN | Накта Подкаст
+https://www.youtube.com/watch?v=wsy9tHJH3mI,https://www.youtube.com/watch?v=wsy9tHJH3mI,3,ru,F,"Сабина Темиралиева, Тахир Белосан",1:32,Основатели ТЕ САМЫЕ МАКАРОНС впервые вместе на Накта Подкаст | Сабина Темиралиева и Тахир Белосан
+https://www.youtube.com/watch?v=Dz2sT_o2KGQ,https://www.youtube.com/watch?v=Dz2sT_o2KGQ,4,ru,M,"Рустем Омаров, Бексултан Пилал",1:28,Нам кажется или казахское кино лучше? | Рустем Омаров и Бексултан Пилал в гостях у Накта
+https://www.youtube.com/watch?v=C9p1lxmjKXE,https://www.youtube.com/watch?v=C9p1lxmjKXE,3,ky,M,"Эмиль Эсеналиев, Радик Эшимов",1:00,Кыргыздар кинодон канча акча табат? | Эмиль Эсеналиев жана Радик Эшимов | Накта Подкаст
+https://www.youtube.com/watch?v=IuG-fBdJmKs,https://www.youtube.com/watch?v=IuG-fBdJmKs,2,ky,M,Алмамбет Шыкмаматов,1:21,Сиз төлөгөн салыктар дал ушул багытка жумшалат | Алмамбет Шыкмаматов | Накта Подкаст
+https://www.youtube.com/watch?v=mzeA1MyvjUM,https://www.youtube.com/watch?v=mzeA1MyvjUM,2,ky,M,Дмитрий Бивол,1:05,How Not to Lose Yourself When You Lose Everything? | Dmitry Bivol | Nakta Podcast
+https://www.youtube.com/watch?v=kTX8cxYYj2U,https://www.youtube.com/watch?v=kTX8cxYYj2U,3,ky,M,"Аскар, Абд-Эль",2:27,Чогулган акча балдарга жардам береби? | Аскар жана Абд-Эль | Накта Подкаст
+https://www.youtube.com/watch?v=XR4kn1npSYA,https://www.youtube.com/watch?v=XR4kn1npSYA,2,ky,M,Садыбакас ажы Доолов,1:53,Ушундай ата-эне тозоктон кутулат | Садыбакас ажы Доолов | Накта Подкаст
+https://www.youtube.com/watch?v=lcjjK1sVJdM,https://www.youtube.com/watch?v=lcjjK1sVJdM,2,ky,M,Максат Ажы Токтомушев,1:50,Ырыскыны кайдан издөө керек? | Максат Ажы Токтомушев | Накта Подкаст
+https://www.youtube.com/watch?v=Pppn_dZoA44,https://www.youtube.com/watch?v=Pppn_dZoA44,2,ky,M,Нурмухаммад Кары,1:10,Сыйкырчылар КАРА ДУБАНЫ бизнес кылышат | Нурмухаммад Кары | Накта Подкаст
+https://www.youtube.com/watch?v=rvVvLK-WMCI,https://www.youtube.com/watch?v=rvVvLK-WMCI,2,ru,M,Улан Борубашев,1:25,iPhone за почку: Кто наживается на этом? | Улан Борубашев | Накта Подкаст
+https://www.youtube.com/watch?v=qJw2_J0WKbI,https://www.youtube.com/watch?v=qJw2_J0WKbI,2,ky,M,Гапыр Мадаминов,1:32,Биздин балдар эмнеге ташбоор жана билимсиз? | Гапыр Мадаминов | Накта Подкаст
+https://www.youtube.com/watch?v=qV6xtmLKEUQ,https://www.youtube.com/watch?v=qV6xtmLKEUQ,2,ky,F,Элера Кабилжан Кызы,1:24,Кыска убакытта жылдыз болуунун сыры эмнеде? | Элера Кабилжан Кызы | Накта Подкаст
+https://www.youtube.com/watch?v=Jhj0vseEL0Q,https://www.youtube.com/watch?v=Jhj0vseEL0Q,2,ky,M,Fazenda,1:05,Багбанчылык келечекте эң керектүү кесип болот | Fazenda | Накта Подкаст
+https://www.youtube.com/watch?v=O73D2Vg5htw,https://www.youtube.com/watch?v=O73D2Vg5htw,2,ru,F,Аяна Касымова,1:02,Как не ошибиться в выборе мужчины? | Аяна Касымова | Накта Подкаст
+https://www.youtube.com/watch?v=eJdDyft5EAc,https://www.youtube.com/watch?v=eJdDyft5EAc,2,ky,M,Гүлжигит Алыкулов,1:26,УЕФА Европа Лигасында ойногон биринчи кыргыз | Гүлжигит Алыкулов | Накта Подкаст
+https://www.youtube.com/watch?v=CcM3TIQSM1U,https://www.youtube.com/watch?v=CcM3TIQSM1U,2,ru,M,Арген Sigma,1:25,Простой парень из Токмока покоряет весь мир | Арген Sigma | Накта Подкаст
+https://www.youtube.com/watch?v=pJYfltQNLUA,https://www.youtube.com/watch?v=pJYfltQNLUA,2,ru,M,Саид Ибрагимов,1:23,"Тот, кто озвучивал Ansar Media, Чубак ажы и других | Саид Ибрагимов | Накта Подкаст"
+https://www.youtube.com/watch?v=9hYkdTvIvmo,https://www.youtube.com/watch?v=9hYkdTvIvmo,2,ky,M,Нурсейит Анаркулов,1:29,Накта Подкасттын автору Нурсейит Анаркулов
+https://www.youtube.com/watch?v=5qbmNY43C_s,https://www.youtube.com/watch?v=5qbmNY43C_s,2,ky,M,Абдылда,1:30,Эмнеге Абдылда бийликти сындабай калды? | Накта Подкаст
+https://www.youtube.com/watch?v=mIPdIngu6tU,https://www.youtube.com/watch?v=mIPdIngu6tU,2,ky,M,Жанар Акаев,1:30,Жанар Акаев сөз эркиндиги жөнүндө | Накта Подкаст
+https://www.youtube.com/watch?v=VsqrIb5Vy-k,https://www.youtube.com/watch?v=VsqrIb5Vy-k,2,ky,M,Умар Даданов,1:11,Элдик долбоор кимге жакпайт? | Умар Даданов | Накта Подкаст
+https://www.youtube.com/watch?v=AMVGMsjkFY8,https://www.youtube.com/watch?v=AMVGMsjkFY8,2,ru,M,Айбек Джангазиев,1:11,Как маркетинг конвертируется в прибыль? | История Bellagio | Айбек Джангазиев на Накта Подкаст
+https://www.youtube.com/watch?v=T72_RY8NY4E,https://www.youtube.com/watch?v=T72_RY8NY4E,2,ky,F,Динара Багышбаева,1:33,Апам бизди кыйналып ЖАЛГЫЗ чоңойтту | Динара Багышбаева | Накта Подкаст
+https://www.youtube.com/watch?v=evXmveIiuy4,https://www.youtube.com/watch?v=evXmveIiuy4,2,ky,M,Алмаз Шаадаев,1:30,Ырчылар бизнесин тойдон кылат | Алмаз Шаадаев | Накта Подкаст
+https://www.youtube.com/watch?v=Nudku-ERw4Y,https://www.youtube.com/watch?v=Nudku-ERw4Y,2,ru,M,Бабур Тольбаев,1:21,Как работают банки и на чём они зарабатывают? | Бабур Тольбаев | Накта Подкаст
+https://www.youtube.com/watch?v=asIzEN5qkPw,https://www.youtube.com/watch?v=asIzEN5qkPw,2,ky,M,Бегиш,1:24,Кыргыз рэптин символу | Бегиш | Накта Подкаст
+https://www.youtube.com/watch?v=CuTvESepxtI,https://www.youtube.com/watch?v=CuTvESepxtI,2,ky,R,ChatGPT,1:20,Адамдар жумушсуз калабы? Роботтор кидин ордун ээлейт? | БилимБот | Накта Подкаст
+https://www.youtube.com/watch?v=WDI5FgH6gCk,https://www.youtube.com/watch?v=WDI5FgH6gCk,2,ky,M,Азамат Аматов,1:25,Апам жалгыз үйүн бизнес үчүн кредитке койду | Азамат Аматов | Накта Подкаст
+https://www.youtube.com/watch?v=CA3nhnJ3E6E,https://www.youtube.com/watch?v=CA3nhnJ3E6E,2,ky,M,Эрлан Андашев,1:21,“АКШда көчөдө калып кетиш оңой” дейт Эрлан Андашев | Накта Подкаст
+https://www.youtube.com/watch?v=9yKXKmkokOE,https://www.youtube.com/watch?v=9yKXKmkokOE,2,ru,M,Денис Гайворонский,1:28,Как сделать миллионы на тортиках? Рассказывает Денис Гайворонский | Накта Подкаст
+https://www.youtube.com/watch?v=mhMfF7OWmCs,https://www.youtube.com/watch?v=mhMfF7OWmCs,2,ky,M,Аскар Акаев,1:28,"Өлкөнү ким тоноду? Аскар Акаев президент болгону, каталары жана Кыргызстанга кайткысы келгени"
+https://www.youtube.com/watch?v=X-ZOYUB-KCE,https://www.youtube.com/watch?v=X-ZOYUB-KCE,2,ru,M,Самат «Кыргыз»,1:04,Почему кыргызские бойцы лучшие в мире? Рассказывает Самат «Кыргыз»
+https://www.youtube.com/watch?v=k3PzjO46lww,https://www.youtube.com/watch?v=k3PzjO46lww,2,ky,M,Мунарбек Сейитбек уулу,1:18,Жаратканым берсе - эч ким ала албайт | Мунарбек Сейитбек уулу | Накта Подкаст
+https://www.youtube.com/watch?v=RaL9bwd1JvI,https://www.youtube.com/watch?v=RaL9bwd1JvI,2,ky,M,Сыныш Кекеев,4:22,Азыркы тойлор биздин салтка кирбейт… | Сыныш Кекеев | Накта Подкаст
+https://www.youtube.com/watch?v=4y7yCLN5iW4,https://www.youtube.com/watch?v=4y7yCLN5iW4,2,ky,M,Бусурманкул Абдибаит уулу,1:28,Америкада 80 000$ кетирдим | Бусурманкул Абдибаит уулу | Накта Подкаст
+https://www.youtube.com/watch?v=hg5OqtfSdMc,https://www.youtube.com/watch?v=hg5OqtfSdMc,2,ky,M,Убай Маткасымов,1:30,“Matkasym” өндүрүш компаниясы дуйнөгө чыгып жатат | Убай Маткасымов | Накта Подкаст
+https://www.youtube.com/watch?v=8Mml61wjZS8,https://www.youtube.com/watch?v=8Mml61wjZS8,2,ky,M,Эдиль Байсалов,1:21,Эми баардыгы министр болгусу келет | Эдиль Байсалов | Накта Подкаст
+https://www.youtube.com/watch?v=IWbvjAO593U,https://www.youtube.com/watch?v=IWbvjAO593U,2,ky,M,Билим Майнаев,1:30,Жашоо сени ыйлатып үйрөтөт | Билим Майнаев | Накта Подкаст
+https://www.youtube.com/watch?v=zFvl2au90IQ,https://www.youtube.com/watch?v=zFvl2au90IQ,2,ky,F,Нурила Дүйшөбекова,1:17,Баарына жагам деп өзүмдү жоготуп алдым  | Нурила Дүйшөбекова | Накта Подкаст
+https://www.youtube.com/watch?v=1sbK6-7datg,https://www.youtube.com/watch?v=1sbK6-7datg,2,ky,M,Freeman 996,1:38,Бул подкаст дем бергенге жарасын | Freeman 996 & Накта
+https://www.youtube.com/watch?v=IXkJKkZ4cM4,https://www.youtube.com/watch?v=IXkJKkZ4cM4,2,ru,F,Дилайда,1:19,Решение принятое за два дня | Дилайда | Накта Подкаст
+https://www.youtube.com/watch?v=2Va0MqKllTU,https://www.youtube.com/watch?v=2Va0MqKllTU,2,ky,M,Нурлан Насип,1:20,"Үйдө тынчтык болбосо, бакытты көчөдөн таба албайсың | Нурлан Насип | Накта Подкаст"
+https://www.youtube.com/watch?v=mA4IlTkBJvk,https://www.youtube.com/watch?v=mA4IlTkBJvk,2,ky,M,Азамат Уланов,1:25,Жашоонун сыры бул... | Азамат Уланов | Накта Подкаст
+https://www.youtube.com/watch?v=AXnlfU3aIPE,https://www.youtube.com/watch?v=AXnlfU3aIPE,2,ky,M,tilimpoz,1:30,Кыргызстанда жашайсыңбы - кыргыз тилин билишиң керек | tilimpoz | Накта Подкаст
+https://www.youtube.com/watch?v=PsNjN41ChQo,https://www.youtube.com/watch?v=PsNjN41ChQo,2,ru,M,Мирлан Таалайбеков,1:05,“Белая Ворона” среди милиционеров | Мирлан Таалайбеков | Накта Подкаст
+https://www.youtube.com/watch?v=eHVgiQdiQYI,https://www.youtube.com/watch?v=eHVgiQdiQYI,3,ky,F,Адиль менен Элька,1:23,Суу менен нан жесек дагы бирге болобуз | Адиль менен Элька | Накта Подкаст
+https://www.youtube.com/watch?v=xeBneK8QJTY,https://www.youtube.com/watch?v=xeBneK8QJTY,2,ky,F,Анаркүл Назаркулова,1:14,Меккеге жөө саякат | Анаркүл Назаркулова | Накта Подкаст
+https://www.youtube.com/watch?v=Pbv4O4m8Bjc,https://www.youtube.com/watch?v=Pbv4O4m8Bjc,2,ky,M,Самат Эркинбеков,1:30,Көп кырдуу болууну үйрөн | Самат Эркинбеков | Накта Подкаст
+https://www.youtube.com/watch?v=jDfX0YtkdFU,https://www.youtube.com/watch?v=jDfX0YtkdFU,2,ky,M,Эрмек Тынай уулу,1:05,Бизнес бул сүннөт |  Эрмек Тынай уулу | Накта подкаст
+https://www.youtube.com/watch?v=FBY82TlVc1I,https://www.youtube.com/watch?v=FBY82TlVc1I,2,ky,M,Каныбек Осмоналиев,1:18,Кыргызстан тарыхында биринчи алтын | Каныбек Осмоналиев | Накта Подкаст
+https://www.youtube.com/watch?v=z01mMu0X8rc,https://www.youtube.com/watch?v=z01mMu0X8rc,2,ky,M,Адыл Болорбек уулу,1:01,I Wanted to Die on Set | Adyl Bolorbek uulu | Nakta Podcast
+https://www.youtube.com/watch?v=ILl9AS1XxHk,https://www.youtube.com/watch?v=ILl9AS1XxHk,2,ru,F,Ректор КГМА,1:04,"Rector of KSMA on corruption, education and RAC | Nakta Podcast"
+https://www.youtube.com/watch?v=tjuLNIGbKcc,https://www.youtube.com/watch?v=tjuLNIGbKcc,2,ky,M,Союзбек Сеитказиев,1:03,Bad habits of our people | Soyuzbek Seitkaziev | Nakta Podcast
+https://www.youtube.com/watch?v=oarCTxQmnwY,https://www.youtube.com/watch?v=oarCTxQmnwY,2,ky-ru,M,Аскар Салымбеков,1:08,Why does Salymbek help people? | Nakta Podcast
+https://www.youtube.com/watch?v=tWsVjXD_Urc,https://www.youtube.com/watch?v=tWsVjXD_Urc,2,ky,M,Сүйүнбек Касмамбетов,0:48,Биз Манасты мыкты жаттаган элбиз Накта Подкасттун Сүйүнбек Касмамбетовунун жашыруун сырлары
+https://www.youtube.com/watch?v=PIEmgZdcBqc,https://www.youtube.com/watch?v=PIEmgZdcBqc,2,ru,M,Турсунбай Бакир уулу,0:53,Personally acquainted with the leader of Hamas | Tursunbai Bakir uulu | Nakta Podcast
+https://www.youtube.com/watch?v=ycdZb8bM0n0,https://www.youtube.com/watch?v=ycdZb8bM0n0,4,ru,M,"Zerych, Flyqe, Nawt",0:53,"КЫРГЫЗЫ чемпионы МИРА по PUBGM | Zerych, Flyqe and Nawt | Накта Подкаст"
+https://www.youtube.com/watch?v=hOwx_SFQZB0,https://www.youtube.com/watch?v=hOwx_SFQZB0,3,ky,M,"Борончу, Азимхан",0:36,Борончу менен Азимхан  боорду эзди | Накта Подкаст | КОНКУРС
+https://www.youtube.com/watch?v=K7KXQFdrfGI,https://www.youtube.com/watch?v=K7KXQFdrfGI,3,ru,F,"Элзада Исмаилова, Актан Кадырбеков",0:36,Зарема и Банзай с Черного Двора | Элзада Исмаилова и Актан Кадырбеков | Накта Подкаст
